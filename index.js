@@ -2,6 +2,7 @@ const db = require('./db')
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 db.connect()
   .then(api => {
@@ -10,6 +11,8 @@ db.connect()
 
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
+    app.use(cors())
+    app.options('*', cors())
 
     const port = process.env.PORT || 3000     
 
