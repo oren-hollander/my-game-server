@@ -1,0 +1,21 @@
+{
+  "name": "my-game-server",
+  "version": "1.0.0",
+  "description": "My Game Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "PORT=80 node index.js"
+  },
+  "author": "Oren Hollander",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
