@@ -19,19 +19,6 @@ db.connect()
     console.log(`Listening on port ${port}`)
     app.listen(port)
 
-    app.get('/', (req, res) => {
-      res.sendFile(__dirname + '/index.html')
-    })
-    app.get('/index.html', (req, res) => {
-      res.sendFile(__dirname + '/index.html')
-    })
-
-    app.get('/service-worker.js', (req, res) => {
-      res.sendFile(__dirname + '/service-worker.js')    
-    })
-
-    app.use("/static", express.static(__dirname + '/static'));
-
     // session
     app.get('/api/v0/sessions/:id', (req, res) => {
       api.session(req.params.id)
