@@ -3,6 +3,13 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const { map, assign } = require('lodash/fp')
+
+const replaceMongoIdWithId = object => {
+  const result = assign(object, {id: object._id})
+  delete result._id
+  return result
+} 
 
 db.connect()
   .then(api => {
@@ -22,12 +29,14 @@ db.connect()
     // session
     app.get('/api/v0/sessions/:id', (req, res) => {
       api.session(req.params.id)
+        .then(replaceMongoIdWithId)
         .then(res.json.bind(res))
     })
 
     // sessions
     app.get('/api/v0/sessions', (req, res) => {
       api.sessions()
+        .then(map(replaceMongoIdWithId))
         .then(res.json.bind(res))
     })
 
